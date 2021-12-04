@@ -60,7 +60,8 @@
     <div class="details-modal-card">
       <div class="title">
         <span>Product details</span>
-        <img (click)="closeDetails()" style="width: 20px;height: 20px;" src="/assets/icons/cancel-cross_icon-icons.com_71726.svg" alt="">
+        <img (click)="closeDetails()" style="width: 20px;height: 20px;"
+          src="/assets/icons/cancel-cross_icon-icons.com_71726.svg" alt="">
       </div>
       <div class="product-info">
         <div class="image-container">
@@ -84,7 +85,7 @@
           <span>Comments</span>
         </div>
         <div class="add-comment-container">
-          <button (click)="addCommentOpened = true" class="btn btn-success">
+          <button (click)="addCommentOpened = !addCommentOpened" class="btn btn-success">
             Add Comment
           </button>
           <form *ngIf="addCommentOpened" [formGroup]="commentForm" class="comment-add-area">
@@ -117,7 +118,6 @@
   </div>
   <app-confirmation style="z-index: 20;" *ngIf="confirmedOpened" (deleted)="deleteProduct()"
     (regected)="confirmedOpened = false"></app-confirmation>
-
-    <app-confirmation style="z-index: 20;" *ngIf="confirmedCommentOpened" (deleted)="confirmDelete()"
+  <app-confirmation style="z-index: 20;" *ngIf="confirmedCommentOpened" (deleted)="confirmDelete()"
     (regected)="confirmedCommentOpened = false"></app-confirmation>
 </div>

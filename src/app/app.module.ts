@@ -7,6 +7,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 @NgModule({
@@ -15,13 +18,16 @@ import { ConfirmationComponent } from './components/confirmation/confirmation.co
     ProductsListComponent,
     HeaderComponent,
     ConfirmationComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot({ positionClass: 'toast-bottom-left' }),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

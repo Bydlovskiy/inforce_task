@@ -1,23 +1,12 @@
 {
   "products": [
     {
-      "imageUrl": "https://a.d-cd.net/68AAAgJLTuA-960.jpg",
-      "name": "BMW 3",
-      "count": 4,
-      "weight": 12000,
-      "size": {
-        "width": 123,
-        "height": 123
-      },
-      "id": 2
-    },
-    {
       "imageUrl": "https://i2.wp.com/floridahsfootball.com/wp-content/uploads/2016/10/IMG-Academy-Featured.png?resize=696%2C418&ssl=1",
       "name": "qwerty",
       "count": 12345,
       "weight": 23456,
       "size": {
-        "width": 123456,
+        "width": 12345612,
         "height": 23456
       },
       "id": 3
@@ -47,16 +36,16 @@
   ],
   "comments": [
     {
-      "productId": 2,
-      "commentText": "asdfghjkl",
-      "date": "2021-12-04T18:10:30.963Z",
-      "id": 4
+      "productId": 3,
+      "commentText": "qawsdefrgtyhu",
+      "date": "2021-12-04T19:03:25.820Z",
+      "id": 1
     },
     {
-      "productId": 2,
-      "commentText": "qawsedrftghyujikolp;[]",
-      "date": "2021-12-04T18:11:40.619Z",
-      "id": 5
+      "productId": 3,
+      "commentText": "qwertyuio",
+      "date": null,
+      "id": 2
     }
   ]
 }

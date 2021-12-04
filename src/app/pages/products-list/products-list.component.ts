@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { ICommentResponse } from 'src/app/shared/interfaces/IComment-interface';
-import { IProductRequest, IProductResponse } from 'src/app/shared/interfaces/product-interface';
+import { IProductResponse } from 'src/app/shared/interfaces/product-interface';
 import { CommentsService } from 'src/app/shared/services/comments.service';
 import { ProductService } from 'src/app/shared/services/product.service';
 
@@ -26,7 +27,8 @@ export class ProductsListComponent implements OnInit {
 
   constructor(private productService: ProductService,
     private fb: FormBuilder,
-    private commentsService: CommentsService) { }
+    private commentsService: CommentsService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.initAddForm();
@@ -74,11 +76,13 @@ export class ProductsListComponent implements OnInit {
       delete productData['width'];
       delete productData['height'];
       this.productService.create(productData).subscribe(() => {
+        this.addModalOpened = false;
+        this.addProductForm.reset();
+        this.initProductList();
       })
-      this.addModalOpened = false;
-      this.addProductForm.reset();
-      this.initProductList();
+      this.toastr.success('Succsesfully added')
     } else {
+      this.toastr.error('Check yor form')
     }
   }
 
@@ -105,19 +109,25 @@ export class ProductsListComponent implements OnInit {
   }
 
   saveProduct(): void {
-    let productData: any = this.addProductForm.value;
-    productData.size = {
-      width: productData.width,
-      height: productData.height
+    if (this.addProductForm.valid) {
+      let productData: any = this.addProductForm.value;
+      productData.size = {
+        width: productData.width,
+        height: productData.height
+      }
+      delete productData['width'];
+      delete productData['height'];
+      this.currentDetailProductData = this.addProductForm.value;
+      this.productService.update(productData, productData.id).subscribe(() => {
+        this.toastr.success('Succsesfully saved')
+        this.initProductList();
+        this.addModalOpened = false;
+        this.isEdit = false;
+      })
+    } else {
+      this.toastr.error('Check yor form')
     }
-    delete productData['width'];
-    delete productData['height'];
-    this.currentDetailProductData = this.addProductForm.value;
-    this.productService.update(productData, productData.id).subscribe(() => {
-      this.initProductList();
-      this.addModalOpened = false;
-      this.isEdit = false;
-    })
+
   }
 
   deleteProduct(): void {
@@ -125,6 +135,7 @@ export class ProductsListComponent implements OnInit {
       this.confirmedOpened = false;
       this.detailModalOpened = false;
       this.initProductList();
+      this.toastr.success('Succsesfully deleted')
     })
   }
 
@@ -140,11 +151,16 @@ export class ProductsListComponent implements OnInit {
     this.commentForm.patchValue({
       productId: this.currentDetailProductData.id,
     })
-    this.commentsService.create(this.commentForm.value).subscribe(() => {
-      this.getComments();
-      this.addCommentOpened = false;
-      this.commentForm.reset();
-    })
+    if (this.commentForm.valid) {
+      this.commentsService.create(this.commentForm.value).subscribe(() => {
+        this.toastr.success('Succsesfully saved')
+        this.getComments();
+        this.addCommentOpened = false;
+        this.commentForm.reset();
+      })
+    } else {
+      this.toastr.error('Check yor form')
+    }
   }
 
   deleteComment(id: number): void {
@@ -155,6 +171,7 @@ export class ProductsListComponent implements OnInit {
   confirmDelete(): void {
     this.commentsService.delete(this.deleteCommentId).subscribe(() => {
       this.getComments();
+      this.toastr.success('Succsesfully deleted')
       this.confirmedCommentOpened = false;
     })
   }
