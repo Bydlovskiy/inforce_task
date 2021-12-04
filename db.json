@@ -2,7 +2,7 @@
   "products": [
     {
       "imageUrl": "https://i2.wp.com/floridahsfootball.com/wp-content/uploads/2016/10/IMG-Academy-Featured.png?resize=696%2C418&ssl=1",
-      "name": "qwerty",
+      "name": "qwerty1231",
       "count": 12345,
       "weight": 23456,
       "size": {
@@ -37,15 +37,9 @@
   "comments": [
     {
       "productId": 3,
-      "commentText": "qawsdefrgtyhu",
-      "date": "2021-12-04T19:03:25.820Z",
-      "id": 1
-    },
-    {
-      "productId": 3,
-      "commentText": "qwertyuio",
-      "date": null,
-      "id": 2
+      "description": "qwertyui",
+      "date": "2021-12-04T20:15:24.731Z",
+      "id": 6
     }
   ]
 }

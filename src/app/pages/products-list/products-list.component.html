@@ -61,7 +61,7 @@
       <div class="title">
         <span>Product details</span>
         <img (click)="closeDetails()" style="width: 20px;height: 20px;"
-          src="/assets/icons/cancel-cross_icon-icons.com_71726.svg" alt="">
+          src="./assets/icons/cancel-cross_icon-icons.com_71726.svg" alt="">
       </div>
       <div class="product-info">
         <div class="image-container">
@@ -89,7 +89,7 @@
             Add Comment
           </button>
           <form *ngIf="addCommentOpened" [formGroup]="commentForm" class="comment-add-area">
-            <textarea formControlName="commentText" name="" id=""></textarea>
+            <textarea formControlName="description" name="" id=""></textarea>
             <button (click)="addComment()" class="btn btn-success">
               Send comment
             </button>

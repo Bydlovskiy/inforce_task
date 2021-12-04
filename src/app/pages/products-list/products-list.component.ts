@@ -53,7 +53,7 @@ export class ProductsListComponent implements OnInit {
   initCommentForm(): void {
     this.commentForm = this.fb.group({
       productId: [null],
-      commentText: [null, Validators.required],
+      description: [null, Validators.required],
       date: new Date()
     })
   }
