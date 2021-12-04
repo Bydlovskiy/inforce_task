@@ -1,0 +1,196 @@
+.main-container {
+  width: 100%;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .button-add-container {
+    margin-top: 50px;
+  }
+
+  .product-card {
+    width: 70%;
+    height: 200px;
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid black;
+    margin: 20px 0;
+    padding: 20px;
+
+    img {
+      max-width: 250px;
+      max-height: 200px;
+    }
+
+    .description-container {
+      width: 60%;
+      display: flex;
+      justify-content: space-around;
+
+      .small-description-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+    }
+  }
+
+  .details-modal-container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .details-modal-card {
+      border-radius: 7px;
+      border: 1px solid grey;
+      width: 50%;
+      min-height: 50%;
+      background-color: rgb(255, 255, 255);
+      box-shadow: 0 0 300px black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .title {
+        font-size: 20px;
+        width: 100%;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+        padding-top: 15px;
+        border-bottom: 2px solid black;
+        padding: 0 20px;
+
+        img {
+          cursor: pointer
+        }
+      }
+
+
+      .product-info {
+        display: flex;
+        width: 100%;
+        padding: 20px;
+        justify-content: space-between;
+
+        .product-description {
+          display: flex;
+          width: 50%;
+          flex-direction: column;
+          align-items: flex-start;
+
+        }
+      }
+
+      .product-comments {
+        min-height: 100px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .title {
+          font-size: 20px;
+          width: 100%;
+          font-weight: 600;
+          text-align: center;
+        }
+
+        .add-comment-container {
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          margin: 20px 0;
+
+          button {
+            width: 200px;
+          }
+
+          .comment-add-area {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            textarea {
+              margin: 20px 0;
+              width: 90%;
+              height: 200px;
+              padding: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .add-modal-container {
+    width: 100%;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .add-modal-card {
+      border-radius: 7px;
+      border: 1px solid grey;
+      width: 50%;
+      min-height: 50%;
+      background-color: rgb(255, 255, 255);
+      box-shadow: 0 0 300px black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .title {
+        font-size: 20px;
+        width: 100%;
+        font-weight: 600;
+        text-align: center;
+        padding-top: 15px;
+        border-bottom: 2px solid black;
+
+        img {
+          cursor: pointer
+        }
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+
+        .inputs-big-container {
+          display: flex;
+
+          .inputs-small-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+          }
+        }
+
+        .buttons-container {
+          display: flex;
+          justify-content: center;
+
+          button {
+            margin: 5px;
+          }
+        }
+      }
+    }
+  }
+
+}

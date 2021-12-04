@@ -1,0 +1,123 @@
+<div class="main-container">
+  <div class="button-add-container">
+    <button class="btn btn-success" (click)="addModalOpened = true">Add product</button>
+  </div>
+  <div class="product-card" *ngFor="let product of productList">
+    <img [src]="product.imageUrl">
+    <div class="description-container">
+      <div class="small-description-container">
+        <span><b>Name</b> : {{ product.name }}</span>
+
+      </div>
+      <div class="small-description-container">
+        <span><b>Count</b> : {{ product.count }}</span>
+      </div>
+      <div class="small-description-container">
+        <button class="btn btn-primary" (click)="productDetail(product.id)">Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="add-modal-container" *ngIf="addModalOpened" style="z-index: 10;">
+    <div class="add-modal-card">
+      <div class="title">
+        <span>Add product</span>
+      </div>
+      <form (ngSubmit)="isEdit ? saveProduct() : addProduct()" [formGroup]="addProductForm">
+        <div class="inputs-big-container">
+          <div class="inputs-small-container">
+            <label for="">Image Url
+              <input class="form-control" formControlName="imageUrl" type="text">
+            </label>
+            <label for="">Product name
+              <input class="form-control" formControlName="name" type="text">
+            </label>
+            <label for="">Count
+              <input class="form-control" formControlName="count" type="number">
+            </label>
+          </div>
+          <div class="inputs-small-container">
+            <label for="">Width
+              <input class="form-control" formControlName="width" type="number">
+            </label>
+            <label for="">Height
+              <input class="form-control" formControlName="height" type="number">
+            </label>
+            <label for="">Weight
+              <input class="form-control" formControlName="weight" type="number">
+            </label>
+          </div>
+        </div>
+        <div class="buttons-container">
+          <button type="submit" class="btn btn-success">{{ isEdit ? 'save' : 'Add' }}</button>
+          <button (click)="closeAdd()" class="btn btn-danger">Reject</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <div class="details-modal-container" *ngIf="detailModalOpened">
+    <div class="details-modal-card">
+      <div class="title">
+        <span>Product details</span>
+        <img (click)="closeDetails()" style="width: 20px;height: 20px;" src="/assets/icons/cancel-cross_icon-icons.com_71726.svg" alt="">
+      </div>
+      <div class="product-info">
+        <div class="image-container">
+          <img style="max-width: 250px;max-height: 200px;" [src]="currentDetailProductData?.imageUrl" alt="">
+        </div>
+        <div class="product-description">
+          <span><b>Name</b>{{ currentDetailProductData?.name }}</span>
+          <span><b>Count</b>{{ currentDetailProductData?.count }}</span>
+          <b>Size</b>
+          <span><b>Width</b>{{ currentDetailProductData?.size?.width }}</span>
+          <span><b>Height</b>{{ currentDetailProductData?.size?.height }}</span>
+          <span><b>Weight</b>{{ currentDetailProductData?.weight }}</span>
+          <div class="buttons-container">
+            <button (click)="editProduct()" class="btn btn-warning">Edit</button>
+            <button (click)="confirmedOpened = true" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-comments">
+        <div class="title">
+          <span>Comments</span>
+        </div>
+        <div class="add-comment-container">
+          <button (click)="addCommentOpened = true" class="btn btn-success">
+            Add Comment
+          </button>
+          <form *ngIf="addCommentOpened" [formGroup]="commentForm" class="comment-add-area">
+            <textarea formControlName="commentText" name="" id=""></textarea>
+            <button (click)="addComment()" class="btn btn-success">
+              Send comment
+            </button>
+          </form>
+        </div>
+        <table *ngIf="currentComments != undefined">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Comment text</th>
+              <th>Data</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let comment of currentComments;let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ comment.description }}</td>
+              <td>{{ comment.date | date: 'short' }}</td>
+              <td><button (click)="deleteComment(comment.id)" class="btn btn-danger">Delete</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <app-confirmation style="z-index: 20;" *ngIf="confirmedOpened" (deleted)="deleteProduct()"
+    (regected)="confirmedOpened = false"></app-confirmation>
+
+    <app-confirmation style="z-index: 20;" *ngIf="confirmedCommentOpened" (deleted)="confirmDelete()"
+    (regected)="confirmedCommentOpened = false"></app-confirmation>
+</div>
